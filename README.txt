@@ -30,5 +30,5 @@ CATATAN:
 - Kode ini belum diuji koneksi ke database kalian. Pastikan .env dan PostgreSQL
   sesuai sebelum menjalankan.
 - Transaksi dengan qty <= 0 tidak dibuang, tetapi disimpan di tabel reject_fakta_penjualan
-  (data asli + alasan + waktu proses). Tabel ini dibuat ulang pada setiap proses
+  (data asli apa adanya + alasan). Tabel ini dibuat ulang pada setiap proses
   (full refresh) dan tidak memiliki PK/FK. Duplikat identik tetap dibuang.

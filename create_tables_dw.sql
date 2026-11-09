@@ -49,7 +49,7 @@ CREATE TABLE fakta_penjualan (
 );
 
 -- Tabel reject: transaksi dengan qty <= 0 yang ditolak dari fakta, disimpan apa adanya
--- (teks mentah) beserta alasannya. Sengaja tanpa primary key dan foreign key.
+-- (teks mentah) beserta alasannya. Sengaja tanpa PK dan FK.
 CREATE TABLE reject_fakta_penjualan (
     id_transaksi VARCHAR(20),
     tanggal VARCHAR(30),
@@ -58,6 +58,5 @@ CREATE TABLE reject_fakta_penjualan (
     qty VARCHAR(20),
     harga_satuan VARCHAR(30),
     metode_bayar VARCHAR(40),
-    alasan_ditolak VARCHAR(200) NOT NULL,
-    waktu_proses TIMESTAMP NOT NULL
+    alasan_ditolak VARCHAR(200) NOT NULL
 );

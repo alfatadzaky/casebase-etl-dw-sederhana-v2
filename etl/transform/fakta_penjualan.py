@@ -1,5 +1,4 @@
 import logging
-from datetime import datetime
 
 import pandas as pd
 
@@ -12,7 +11,7 @@ KOLOM_MENTAH = [
     "id_transaksi", "tanggal", "id_produk", "id_pelanggan",
     "qty", "harga_satuan", "metode_bayar"
 ]
-KOLOM_REJECT = KOLOM_MENTAH + ["alasan_ditolak", "waktu_proses"]
+KOLOM_REJECT = KOLOM_MENTAH + ["alasan_ditolak"]
 
 def transform_fakta_penjualan(
     df_penjualan, dim_pelanggan, dim_produk, dim_waktu, dim_metode_bayar
@@ -69,7 +68,6 @@ def transform_fakta_penjualan(
     qty_tidak_positif = df["qty"] <= 0
     reject = mentah.loc[df.index[qty_tidak_positif], KOLOM_MENTAH].copy()
     reject["alasan_ditolak"] = "qty <= 0"
-    reject["waktu_proses"] = datetime.now().replace(microsecond=0)
     reject = reject.sort_values("id_transaksi", kind="stable").reset_index(drop=True)
     df = df[~qty_tidak_positif].copy()
     log.info("Pisahkan qty <= 0 ke tabel reject: %d baris", len(reject))
